@@ -1,0 +1,18 @@
+version: '3'
+services:
+  checkpages:
+    hostname: checkpages
+    image: checkpages:0.0.1
+    build:
+      context: .
+      dockerfile: ./dockerfile-checkpages
+    volumes:
+      - /tmp:/tmp
+      - $HOME/.m2:/root/.m2
+    links:
+      - selenium
+    tty: true
+  selenium:
+    hostname: selenium
+    image: selenium/standalone-chrome:3.141.59
+    shm_size: 2g
