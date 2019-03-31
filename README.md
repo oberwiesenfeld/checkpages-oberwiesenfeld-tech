@@ -1,4 +1,4 @@
-# CheckPages
+# CheckPages [![Build Status](https://travis-ci.org/oberwiesenfeld/checkpages-oberwiesenfeld-tech.png)](https://travis-ci.org/oberwiesenfeld/checkpages-oberwiesenfeld-tech)
 
 DockerCompose project which runs two containers.
 
@@ -7,7 +7,7 @@ DockerCompose project which runs two containers.
 
 ## CheckPageTest 
 
-The unit test file `CheckPagesTest` holds the selenium tests against the
+The java unit test file `CheckPagesTest` holds the selenium tests against the
 webpage https://oberwiesenfeld.tech
 
 ## Log of a sample run
