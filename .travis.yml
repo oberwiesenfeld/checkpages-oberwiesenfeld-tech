@@ -11,6 +11,7 @@ install:
   - docker-compose up -d
 
 before_script:
+  - sleep 60
   # Selenium status
   - curl http://selenium:4444/wd/hub/status
 
