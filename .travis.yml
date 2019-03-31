@@ -1,34 +1,22 @@
 sudo: required
-
 before_install:
   - docker pull selenium/standalone-chrome:3.141.59
-
 services:
   - docker
-
 install:
   - docker-compose build
   - docker-compose up -d
-
 before_script:
   - sleep 60
-  # Selenium status
   - docker-compose exec selenium /bin/bash -c "curl http://localhost:4444/wd/hub/status"
-
 script:
-  # Wait for finished maven
   - sleep 60
   - docker-compose logs checkpages
-
+  - docker-compose logs selenium
 after_script:
   - docker-compose stop
   - docker-compose rm -f
-
 notifications:
   email: false
   slack:
-    rooms:
-      - secure: "x/4gonVUfclKtLwxsqETw4v0NEsfFs11N9Dlu5GNZgvodv4KndM0/bBov2pM055Zvqy/Tbfy/xqd6NB+ZpsPzOUXMownGCHdtpAnicp9P27x1+07m3Vrex+ZBkctUnjv5fTD7qfU5CRtyEZv/ile4zkVJpqHhsBTv2Swge/Yyyp/pIv2sBdIfOmgAT6NA0AvJQbDOnGKv4KiqCsRXZw/lsCWNhdSvNIpTr7R864XAjdlVJw1SHPYW6+1P2ckDy1xKbbeln8onC4r9QHOs7mGZQwBTYNrvYKbkg6pC76EfP785BOnHBzURNqxgpVl6x1qwWgzpGo7MpHHoYpH7izgOZJM8Fg7fcXBQ1UYhgsIuU3He/0E51GJ7xo52vSP+lULDCiOlwOm4BAMQRl4YKJBHwWVJqXR10CIcLvIxqtVbcxlcPz0gyXYV6u31NVsVIf5uAgd5IAByytHEC5F/m6QBt0Vzeu0I03bgAp1tJ8mIrUYV5D+tUJ1oz2MtfVkMJj0ZQanP8xDo0NfbfuF8rqb7GTNN/0i+i/w3xiMB0CFAl+dnD/3AgGk18k5YgboJD+Xuw2IC/LqgkXdJhL0VfPP/nuvt3kItbHeeEDj7viW8cHxMFCNpkG0kn6mlohMjepUFHKI/hNA8rVuVrjWwv6jpPmzWX3seiOYiwhr8m2tskw="
-    on_success: always
-    on_failure: always
-    on_pull_requests: true
+    secure: QxAidE0NIMoCtsJeZWgWyNRxh2vzz6UCZBa9pEGhRM2kuIDN5Kp3C3iG+ez2kKWN6wDG8upRZMsGlpXzqte4Hg7EsKS/yxMBfpJi+IQDSB1l1s67sIIdUSz6BUnaKQBGArJXYVehzkR/5I/4SJpzQVgOgifWzVzpELyB7rJgK8KTOyqSgUBGU1BKg2tEd8awQWyXpGPvEIM7MKRKqwMZABCf0orvuDGeesLJK1Qj4nyPSgePilTWOPKvJ8iwVFmSyxxlz0kRl4EiLilERJ0sxDir1zj/esrPNQbNLrFASbqYggpe+A1wzWvxxJArYhtTpJlP/LUU7fBeIyMHkpDmXvo1tNlF6AfqlLXRsQF1QcQhv6mJ8K4vgUeECpSecXRZl+CH49nLZqNVRgxi544hJx8XKJ5y7YRl9mY05tgrojkyBoSWcarrIiiz69uDQYG2SCpH5Ex257XJ1bZD2RnGMX2vJRytTwPY/uqY8q9xRvQPhukszYQXdGWtbKN3VpJnPesPaeuDNdCLnqVmOuOQkWLE44M1ksySgpzaxu7tgvWW4mIi/U7eaajdrWd1edEzzQXeF2JS7U7iv13svgddO6R4hOz/hmqWkcu5kati0OWZfvCe3DQlnZA610zTagUQ+pbdKDr5JZR0k9HbipuJ61qfysoTM66PEuLP3qZ7CKM=
