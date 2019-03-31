@@ -13,7 +13,7 @@ install:
 before_script:
   - sleep 60
   # Selenium status
-  - curl http://selenium:4444/wd/hub/status
+  - docker-compose exec selenium /bin/bash -c "curl http://localhost:4444/wd/hub/status"
 
 script:
   # Wait for finished maven
