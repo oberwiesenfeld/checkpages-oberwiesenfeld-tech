@@ -1,12 +1,10 @@
 package tech.oberwiesenfeld.checkpages;
 
-import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -24,9 +22,10 @@ import java.time.format.DateTimeFormatter;
 
 import static java.lang.Thread.sleep;
 import static java.util.Locale.GERMAN;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(BlockJUnit4ClassRunner.class)
-public class CheckPagesTest extends TestCase {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class CheckPagesTest {
 
   private static final boolean DOCKER_COMPOSE = true;
   private static final String HTTP_SELENIUM_4444_WD_HUB = "http://selenium:4444/wd/hub";
@@ -34,8 +33,8 @@ public class CheckPagesTest extends TestCase {
   private static final String IN_MUENCHEN_AM_OBERWIESENFELD = "https://oberwiesenfeld.tech/2018/03/09/in-muenchen-am-oberwiesenfeld/";
   private static WebDriver remoteWebDriver;
 
-  @BeforeClass
-  public static void setup() throws MalformedURLException, InterruptedException {
+  @BeforeAll
+  static void setup() throws MalformedURLException, InterruptedException {
     String urlToSeleniumServer;
     if (DOCKER_COMPOSE) {
       urlToSeleniumServer = HTTP_SELENIUM_4444_WD_HUB;
@@ -52,15 +51,15 @@ public class CheckPagesTest extends TestCase {
     acceptCookieOnPage(remoteWebDriver);
   }
 
-  @AfterClass
-  public static void cleanup() {
+  @AfterAll
+  static void cleanup() {
     if (remoteWebDriver != null) {
       remoteWebDriver.quit();
     }
   }
 
   @Test
-  public void searchForEngineName() throws InterruptedException, IOException {
+  void searchForEngineName() throws InterruptedException, IOException {
     remoteWebDriver.get(IN_MUENCHEN_AM_OBERWIESENFELD);
     sleep(1000);
     WebElement searchBox = remoteWebDriver.findElement(By.name("s"));
@@ -71,7 +70,7 @@ public class CheckPagesTest extends TestCase {
   }
 
   @Test
-  public void searchAndViewArticle() throws InterruptedException, IOException {
+  void searchAndViewArticle() throws InterruptedException, IOException {
     remoteWebDriver.get(IN_MUENCHEN_AM_OBERWIESENFELD);
     sleep(1000);  // Let the user actually see something!
     WebElement searchBox = remoteWebDriver.findElement(By.name("s"));
