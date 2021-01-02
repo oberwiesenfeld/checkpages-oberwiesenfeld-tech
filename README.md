@@ -38,7 +38,7 @@ Removing intermediate container 20a68f76679f
  ---> 10dfdf74b84f
 Successfully built 10dfdf74b84f
 Successfully tagged checkpages:0.0.1
-OSX155-MBP:checkpages-oberwiesenfeld-tech marco.rauch$ docker-compose up
+$ docker-compose up
 Creating network "checkpages-oberwiesenfeld-tech_default" with the default driver
 Pulling selenium (selenium/standalone-chrome:3.141.59)...
 3.141.59: Pulling from selenium/standalone-chrome
