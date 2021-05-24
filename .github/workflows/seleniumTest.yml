@@ -30,7 +30,7 @@ jobs:
     - name: Run Test 
       run: sleep 60  
     - name: Run Test 
-      run: docker-compose exec selenium /bin/bash -c "curl http://localhost:4444/wd/hub/status"
+      run: docker-compose exec -T selenium /bin/bash -c "curl http://localhost:4444/wd/hub/status"
     - name: Run Test 
       run: sleep 60  
     - name: Run Test 
