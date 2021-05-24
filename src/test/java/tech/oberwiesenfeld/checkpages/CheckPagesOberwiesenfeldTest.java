@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class CheckPagesOberwiesenfeldTest extends CheckPagesTestHelper {
 
   private static final String IN_MUENCHEN_AM_OBERWIESENFELD = "https://oberwiesenfeld.tech/2018/03/09/in-muenchen-am-oberwiesenfeld/";
+  private static final String BAYERN_KLEINMOTOR_M2B15 = "https://oberwiesenfeld.tech/2021/04/05/m2b15/";
 
   @BeforeAll
   static void setup() throws MalformedURLException, InterruptedException {
@@ -61,5 +62,24 @@ public class CheckPagesOberwiesenfeldTest extends CheckPagesTestHelper {
     artikel.click();
     erstelleScreenShotUndSpeichereAlsDatei("click_artikel", (TakesScreenshot) remoteWebDriver);
     sleep(2000);  // Let the user actually see something!
+  }
+
+  @Test
+  void searchAndViewArticleKleinMotor() throws InterruptedException, IOException {
+    remoteWebDriver.get(BAYERN_KLEINMOTOR_M2B15);
+    sleep(1000);
+    WebElement searchBox = remoteWebDriver.findElement(By.name("s"));
+    searchBox.sendKeys("m2b15");
+    searchBox.submit();
+    sleep(1000);
+    WebElement artikel = remoteWebDriver.findElement(By.linkText("Bayern-Kleinmotor Type M2 B15"));
+    if (!artikel.isDisplayed()) {
+      fail("Link nicht gefunden");
+    }
+    System.out.println("" + artikel.toString());
+    sleep(1000);
+    artikel.click();
+    erstelleScreenShotUndSpeichereAlsDatei("click_artikel", (TakesScreenshot) remoteWebDriver);
+    sleep(2000);
   }
 }
