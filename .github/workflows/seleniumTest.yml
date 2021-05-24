@@ -1,0 +1,50 @@
+# This is a basic workflow that is manually triggered
+
+name: Selenium Test Run
+
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: "0 14 * * *"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  SeleniumTestRun:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@v2
+    - name: Pull Image
+      run: docker pull selenium/standalone-chrome:3.141.59
+    - name: Run Test 
+      run: docker-compose build
+    - name: Run Test 
+      run: docker-compose up -d
+    - name: Run Test 
+      run: sleep 60  
+    - name: Run Test 
+      run: docker-compose exec -T selenium /bin/bash -c "curl http://localhost:4444/wd/hub/status"
+    - name: Run Test 
+      run: sleep 60  
+    - name: Run Test 
+      run: docker-compose logs checkpages
+    - name: Run Test 
+      run: docker-compose stop
+    - name: Run Test 
+      run: docker-compose rm -f
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: travis
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: 'Job Stats ${{ job.status }}'
+        SLACK_TITLE: 'checkpages-oberwiesenfeld-tech ${{ job.status }}'
+        SLACK_USERNAME: engineering@oberwiesenfeld.tech
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

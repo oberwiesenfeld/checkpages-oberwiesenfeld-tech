@@ -1,4 +1,4 @@
-# CheckPages [![Build Status](https://travis-ci.org/oberwiesenfeld/checkpages-oberwiesenfeld-tech.png)](https://travis-ci.org/oberwiesenfeld/checkpages-oberwiesenfeld-tech)
+# CheckPages [![Selenium Test Run](https://github.com/oberwiesenfeld/checkpages-oberwiesenfeld-tech/actions/workflows/seleniumTest.yml/badge.svg)](https://github.com/oberwiesenfeld/checkpages-oberwiesenfeld-tech/actions/workflows/seleniumTest.yml)
 
 A simple selenium test project which interacts with two docker containers: 
 
