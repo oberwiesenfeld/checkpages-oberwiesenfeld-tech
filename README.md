@@ -9,7 +9,7 @@ A simple selenium test project which interacts with two docker containers:
 
 The java unit test files are running some tests against the webpage https://oberwiesenfeld.tech
 
-## Log of a sample run
+## Log of a sample test run
 
 ```
 docker-compose build
