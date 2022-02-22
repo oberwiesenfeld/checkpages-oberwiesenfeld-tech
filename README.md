@@ -5,13 +5,18 @@ A simple selenium test project which interacts with two docker containers:
 * a headless chrome in a selenium server.
 * a maven java junit project which runs selenium tests
 
-## Junit 5 Selenium Tests 
+## JUnit 5 Selenium Tests 
 
 The java unit test files are running some tests against the webpage https://oberwiesenfeld.tech
 
+```mermaid
+graph TD;
+B[CheckPages Java Unit Tests] --> A[Docker Selenium Test]
+B --> C[WebSite oberwiesenfeld.tect]
+```
+
 ## Log of a sample test run
 
-```
 docker-compose build
 selenium uses an image, skipping
 Building checkpages
