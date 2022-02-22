@@ -11,7 +11,7 @@ The java unit test files are running some tests against the webpage https://ober
 
 ```mermaid
 graph TD;
-B[CheckPages Java Unit Tests] --> A[Docker Selenium Test]
+A[CheckPages Java Unit Tests] --> B[Docker Selenium Test]
 B --> C[WebSite oberwiesenfeld.tect]
 ```
 
