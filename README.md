@@ -18,6 +18,7 @@ B --> C[WebSite https://oberwiesenfeld.tech]
 
 ## Log of a sample test run
 
+```
 docker-compose build
 selenium uses an image, skipping
 Building checkpages
