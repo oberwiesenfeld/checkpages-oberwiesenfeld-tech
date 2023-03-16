@@ -9,11 +9,6 @@ on:
   schedule:
     - cron: "0 14 * * *"
 env:
-  SLACK_CHANNEL: travis
-  SLACK_COLOR: ${{ job.status }}
-  SLACK_MESSAGE: 'Job Stats ${{ job.status }}'
-  SLACK_TITLE: 'checkpages-oberwiesenfeld-tech ${{ job.status }}'
-  SLACK_USERNAME: engineering@oberwiesenfeld.tech
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -46,3 +41,9 @@ jobs:
       run: docker-compose rm -f
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: travis
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: 'Job Stats ${{ job.status }}'
+        SLACK_TITLE: 'checkpages-oberwiesenfeld-tech ${{ job.status }}'
+        SLACK_USERNAME: engineering@oberwiesenfeld.tech
