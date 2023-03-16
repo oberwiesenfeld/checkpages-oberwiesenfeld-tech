@@ -8,8 +8,6 @@ on:
     branches: [ master ]
   schedule:
     - cron: "0 14 * * *"
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -41,6 +39,7 @@ jobs:
       run: docker-compose rm -f
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
+      if: github.event_name != 'pull_request'
       env:
         SLACK_CHANNEL: travis
         SLACK_COLOR: ${{ job.status }}
