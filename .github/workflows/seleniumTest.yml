@@ -43,6 +43,7 @@ jobs:
       env:
         SLACK_CHANNEL: travis
         SLACK_COLOR: ${{ job.status }}
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: 'Job Stats ${{ job.status }}'
         SLACK_TITLE: 'checkpages-oberwiesenfeld-tech ${{ job.status }}'
         SLACK_USERNAME: engineering@oberwiesenfeld.tech
