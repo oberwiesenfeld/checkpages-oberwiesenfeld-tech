@@ -40,10 +40,11 @@ jobs:
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       if: github.event_name != 'pull_request'
-      env:
+      with:
         SLACK_CHANNEL: travis
         SLACK_COLOR: ${{ job.status }}
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: 'Job Stats ${{ job.status }}'
         SLACK_TITLE: 'checkpages-oberwiesenfeld-tech ${{ job.status }}'
         SLACK_USERNAME: engineering@oberwiesenfeld.tech
+      continue-on-error: true
