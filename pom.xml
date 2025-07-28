@@ -8,7 +8,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <surefire.argline>-Xms1024m -Xmx2048m</surefire.argline>
-    <junit.jupiter.version>5.11.4</junit.jupiter.version>
+    <junit.jupiter.version>5.13.4</junit.jupiter.version>
   </properties>
   <build>
     <plugins>
